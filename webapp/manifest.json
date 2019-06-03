@@ -53,7 +53,11 @@
 			"libs": {
 				"sap.ui.core": {},
 				"sap.m": {},
-				"sap.f": {}
+				"sap.f": {},
+				"sap.ui.layout": {},
+				"sap.uxap": {},
+				"sap.tnt": {},
+				"sap.suite.ui.commons": {}
 			}
 		},
 		"contentDensities": {
@@ -97,7 +101,7 @@
 				]
 			}, {
 				"name": "Info",
-				"pattern": "Info",
+				"pattern": "SalesOrderSet/{objectId}/Item/{itemPosition}",
 				"target": [
 					"master",
 					"object",
