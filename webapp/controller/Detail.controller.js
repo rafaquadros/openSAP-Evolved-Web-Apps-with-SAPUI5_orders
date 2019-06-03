@@ -4,8 +4,9 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"../model/formatter",
 	"sap/m/library",
-	"sap/ui/Device"
-], function (BaseController, JSONModel, formatter, mobileLibrary, Device) {
+	"sap/ui/Device",
+	"sap/m/MessageToast"
+], function (BaseController, JSONModel, formatter, mobileLibrary, Device, MessageToast) {
 	"use strict";
 	// shortcut for sap.m.URLHelper
 	var URLHelper = mobileLibrary.URLHelper;
@@ -187,6 +188,15 @@ sap.ui.define([
 				objectId: (oEvent.getParameter("listItem") || oEvent.getSource()).getBindingContext().getProperty("SalesOrderID"),
 				itemPosition: (oEvent.getParameter("listItem") || oEvent.getSource()).getBindingContext().getProperty("ItemPosition")
 			}, bReplace);
+		},
+
+		onConfirm: function (oEvent) {
+			var oBinding = oEvent.getSource().getBindingContext().getObject();
+			var oMessage = this.getResourceBundle().getText(
+				"OrderPreparationMessage", [oBinding.CustomerID,
+					oBinding.CustomerName
+				]);
+			MessageToast.show(oMessage);
 		}
 	});
 });
