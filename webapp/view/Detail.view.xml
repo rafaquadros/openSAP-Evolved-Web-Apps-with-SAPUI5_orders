@@ -1,66 +1,35 @@
-<mvc:View
-	controllerName="opensap.orders.controller.Detail"
-	xmlns="sap.m"
-	xmlns:semantic="sap.f.semantic"
-	xmlns:mvc="sap.ui.core.mvc">
-
-	<semantic:SemanticPage
-		id="detailPage"
-		busy="{detailView>/busy}"
-		busyIndicatorDelay="{detailView>/delay}">
+<mvc:View xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:mvc="sap.ui.core.mvc" controllerName="opensap.orders.controller.Detail">
+	<semantic:SemanticPage id="detailPage" busy="{detailView&gt;/busy}" busyIndicatorDelay="{detailView&gt;/delay}">
 		<semantic:titleHeading>
 			<Title text="{CustomerName}"/>
 		</semantic:titleHeading>
 		<semantic:headerContent>
-			<ObjectAttribute title="{i18n>priceTitle}"/>
-			<ObjectNumber
-				id="objectHeaderNumber"
-				number="{
-					path: 'NetAmount',
-					formatter: '.formatter.currencyValue'
-				}"
-				unit="{CurrencyCode}"
-			/>
+			<ObjectAttribute title="{i18n&gt;priceTitle}"/>
+			<ObjectNumber id="objectHeaderNumber" number="{ path: 'NetAmount', formatter: '.formatter.currencyValue' }" unit="{CurrencyCode}"/>
 		</semantic:headerContent>
 		<semantic:content>
-			<Table
-				id="lineItemsList"
-				width="auto"
-				items="{ToLineItems}"
-				updateFinished=".onListUpdateFinished"
-				noDataText="{i18n>detailLineItemTableNoDataText}"
-				busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+			<Table id="lineItemsList" width="auto" items="{ToLineItems}" mode="SingleSelectMaster" updateFinished=".onListUpdateFinished"
+				noDataText="{i18n&gt;detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView&gt;/lineItemTableDelay}" selectionChange="action"
+				xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+				action:wiring="\{'selectionChange':\{'navigation':\{'routeName':'Info'\}\}\}">
 				<headerToolbar>
 					<Toolbar>
-						<Title
-							id="lineItemsTitle"
-							text="{detailView>/lineItemListTitle}"
-							titleStyle="H3"/>
+						<Title id="lineItemsTitle" text="{detailView&gt;/lineItemListTitle}" titleStyle="H3"/>
 					</Toolbar>
 				</headerToolbar>
 				<columns>
 					<Column>
-						<Text text="{i18n>detailLineItemTableIDColumn}"/>
+						<Text text="{i18n&gt;detailLineItemTableIDColumn}"/>
 					</Column>
-					<Column
-						minScreenWidth="Tablet"
-						demandPopin="true"
-						hAlign="End">
-						<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+						<Text text="{i18n&gt;detailLineItemTableUnitNumberColumn}"/>
 					</Column>
 				</columns>
 				<items>
 					<ColumnListItem>
 						<cells>
-							<ObjectIdentifier
-								title="{ProductID}"
-								text="{ItemPosition}"/>
-							<ObjectNumber
-								number="{
-									path: 'NetAmount',
-									formatter: '.formatter.currencyValue'
-								}"
-								unit="{CurrencyCode}"/>
+							<ObjectIdentifier title="{ProductID}" text="{ItemPosition}"/>
+							<ObjectNumber number="{ path: 'NetAmount', formatter: '.formatter.currencyValue' }" unit="{CurrencyCode}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
@@ -68,30 +37,18 @@
 		</semantic:content>
 		<!--Semantic ShareMenu Buttons-->
 		<semantic:sendEmailAction>
-			<semantic:SendEmailAction
-				id="shareEmail"
-				press=".onSendEmailPress"/>
+			<semantic:SendEmailAction id="shareEmail" press=".onSendEmailPress"/>
 		</semantic:sendEmailAction>
-
 		<semantic:closeAction>
-			<semantic:CloseAction
-					id="closeColumn"
-					press=".onCloseDetailPress"/>
+			<semantic:CloseAction id="closeColumn" press=".onCloseDetailPress"/>
 		</semantic:closeAction>
-
 		<semantic:fullScreenAction>
-			<semantic:FullScreenAction
-					id="enterFullScreen"
-					visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
-					press=".toggleFullScreen"/>
+			<semantic:FullScreenAction id="enterFullScreen"
+				visible="{= !${device&gt;/system/phone} &amp;&amp; !${appView&gt;/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
 		</semantic:fullScreenAction>
 		<semantic:exitFullScreenAction>
-			<semantic:ExitFullScreenAction
-					id="exitFullScreen"
-					visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
-					press=".toggleFullScreen"/>
+			<semantic:ExitFullScreenAction id="exitFullScreen"
+				visible="{= !${device&gt;/system/phone} &amp;&amp; ${appView&gt;/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
 		</semantic:exitFullScreenAction>
-
 	</semantic:SemanticPage>
-
 </mvc:View>

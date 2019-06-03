@@ -84,21 +84,26 @@
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "master",
-					"target": "master"
-				},
-				{
-					"pattern": "SalesOrderSet/{objectId}",
-					"name": "object",
-					"target": [
-						"master",
-						"object"
-					]
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "master",
+				"target": "master"
+			}, {
+				"pattern": "SalesOrderSet/{objectId}",
+				"name": "object",
+				"target": [
+					"master",
+					"object"
+				]
+			}, {
+				"name": "Info",
+				"pattern": "Info",
+				"target": [
+					"master",
+					"object",
+					"Info"
+				]
+			}],
 			"targets": {
 				"master": {
 					"viewName": "Master",
@@ -119,6 +124,11 @@
 				"notFound": {
 					"viewName": "NotFound",
 					"viewId": "notFound"
+				},
+				"Info": {
+					"viewType": "XML",
+					"viewName": "Info",
+					"controlAggregation": "endColumnPages"
 				}
 			}
 		}

@@ -1,0 +1,15 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="opensap.orders.controller.Info">
+	<App>
+		<pages>
+			<Page title="{i18n>infoTitle}">
+				<content>
+				    <List xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" noDataText="Drop list items here" id="list0" cd:w5g.dt.context="/ProductSet" items="{path:'/ProductSet',parameters:{select:'Name,ProductID'}}">
+				        <items>
+				            <StandardListItem type="Navigation" title="{Name}" description="{ProductID}" icon="sap-icon://picture" id="item0"/>
+				        </items>
+				    </List>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
