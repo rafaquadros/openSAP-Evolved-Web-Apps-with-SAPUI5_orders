@@ -1,5 +1,6 @@
 <mvc:View xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:mvc="sap.ui.core.mvc" controllerName="opensap.orders.controller.Detail"
-	xmlns:tnt="sap.tnt" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:l="sap.ui.layout" xmlns:control="opensap.orders.control">
+	xmlns:tnt="sap.tnt" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:l="sap.ui.layout" xmlns:control="opensap.orders.control"
+	xmlns:dnd="sap.ui.core.dnd">
 	<semantic:SemanticPage id="detailPage" busy="{detailView&gt;/busy}" busyIndicatorDelay="{detailView&gt;/delay}" showFooter="true">
 		<semantic:titleHeading>
 			<Title text="{CustomerName}"/>
@@ -21,6 +22,11 @@
 							<Title id="lineItemsTitle" text="{detailView&gt;/lineItemListTitle}" titleStyle="H3"/>
 							<ToolbarSpacer/>
 							<Button icon="sap-icon://add" tooltip="{i18n>createButtonTooltip}" press=".onCreate"/>
+							<control:DeleteButton icon="sap-icon://delete" press=".onDelete">
+								<control:dragDropConfig>
+									<dnd:DropInfo drop=".onDelete"/>
+								</control:dragDropConfig>
+							</control:DeleteButton>
 						</Toolbar>
 					</headerToolbar>
 					<columns>
@@ -40,6 +46,9 @@
 							<Text text="{i18n&gt;detailLineItemTableUnitNumberColumn}"/>
 						</Column>
 					</columns>
+					<dragDropConfig>
+						<dnd:DragInfo sourceAggregation="items"/>
+					</dragDropConfig>
 					<items>
 						<ColumnListItem selected="{= ${ItemPosition} === ${appView>/selectedItemId}}" type="Navigation">
 							<cells>
