@@ -26,9 +26,17 @@ sap.ui.define([
 			});
 			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
 			this.getRouter().getRoute("Info").attachPatternMatched(this._onObjectMatched, this);
+			this.getRouter().getRoute("create").attachPatternMatched(this._onObjectMatched, this);
 			this.setModel(oViewModel, "detailView");
 			this.getOwnerComponent().getModel().metadataLoaded().then(this._onMetadataLoaded.bind(this));
 		},
+		onCreate: function (oEvent) {
+			var bReplace = !Device.system.phone;
+			this.getRouter().navTo("create", {
+				objectId: oEvent.getSource().getBindingContext().getProperty("SalesOrderID")
+			}, bReplace);
+		},
+
 		/* =========================================================== */
 		/* event handlers                                              */
 		/* =========================================================== */

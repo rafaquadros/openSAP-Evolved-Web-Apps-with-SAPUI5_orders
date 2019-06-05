@@ -73,7 +73,11 @@
 			},
 			"": {
 				"dataSource": "mainService",
-				"preload": true
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+
 			}
 		},
 		"routing": {
@@ -98,6 +102,14 @@
 				"target": [
 					"master",
 					"object"
+				]
+			}, {
+				"pattern": "SalesOrderSet/{objectId}/create",
+				"name": "create",
+				"target": [
+					"master",
+					"object",
+					"create"
 				]
 			}, {
 				"name": "Info",
@@ -128,6 +140,12 @@
 				"notFound": {
 					"viewName": "NotFound",
 					"viewId": "notFound"
+				},
+				"create": {
+					"viewType": "XML",
+					"viewName": "Create",
+					"controlAggregation": "endColumnPages",
+					"viewId": "create"
 				},
 				"Info": {
 					"viewType": "XML",
