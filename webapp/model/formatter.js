@@ -40,6 +40,17 @@ sap.ui.define([], function () {
 			default:
 				return 7;
 			}
+		},
+
+		convertCurrencyCodeToSymbol: function (sValue) {
+			switch (sValue) {
+			case "USD":
+				return "$";
+			case "EUR":
+				return "€";
+			default:
+				return sValue;
+			}
 		}
 
 	};

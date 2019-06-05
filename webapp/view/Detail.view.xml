@@ -67,7 +67,8 @@
 										<si:PropertyThreshold fillColor="Good" toValue="100"/>
 									</si:propertyThresholds>
 								</si:StatusIndicator>
-								<ObjectNumber number="{ path: 'NetAmount', formatter: '.formatter.currencyValue' }" unit="{CurrencyCode}"/>
+								<ObjectNumber number="{ path: 'NetAmount', formatter: '.formatter.currencyValue' }"
+									unit="{ path: 'CurrencyCode', formatter: '.formatter.convertCurrencyCodeToSymbol' }"/>
 							</cells>
 						</ColumnListItem>
 					</items>

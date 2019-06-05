@@ -35,4 +35,30 @@ sap.ui.define([
 	QUnit.test("Should round a zero", function (assert) {
 		currencyValueTestCase.call(this, assert, "0", "0.00");
 	});
+
+	function convertCurrencyCodeToSymbolTestCase(assert, sCurrencyCode, sExpectedSymbol) {
+		// Act
+		var sResult = formatter.convertCurrencyCodeToSymbol(sCurrencyCode);
+
+		// Assert
+		assert.strictEqual(sResult, sExpectedSymbol, "The conversion was correct");
+
+	}
+
+	QUnit.test("Should convert to $", function (assert) {
+		convertCurrencyCodeToSymbolTestCase.call(this, assert, "USD", "$");
+	});
+
+	QUnit.test("Should convert to €", function (assert) {
+		convertCurrencyCodeToSymbolTestCase.call(this, assert, "EUR", "€");
+	});
+
+	QUnit.test("Should not convert CHF", function (assert) {
+		convertCurrencyCodeToSymbolTestCase.call(this, assert, "CHF", "CHF");
+	});
+
+	QUnit.test("Should not convert an empty string", function (assert) {
+		convertCurrencyCodeToSymbolTestCase.call(this, assert, "", "");
+	});
+
 });
